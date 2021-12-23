@@ -16,7 +16,7 @@ const Div = styled.div`
 const PhotoApp = () => {
   return (
     <Div className="App">
-            <PhotoSliderDesktop/>
+      <PhotoSliderDesktop/>
     </Div>
   );
 };
