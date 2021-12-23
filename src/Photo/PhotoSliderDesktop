@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Swiper from 'react-id-swiper';
+import PhotoSliderDesktop from '../Media/MediaSliderDesktop';
 
 var PhotoTitleList = [
   "20.09.23",
@@ -69,47 +70,8 @@ function window_load() {
   }
 }
 
-const Div = styled.div `
-
-.swipercontainer{
-  width: calc(var(--Photo-size) + 10px * 3);
-  height: -moz-available;
-  height: -webkit-fill-available;
-  height: fill-available;
-  display: block;
-  position: fixed;
-  top: 60px;
-  left: 50%;
-  transform: translate(-50%, 0);
-  overflow: hidden scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  margin: 0;
-}
-
-@media screen and (max-width: 1200px){
-  .swipercontainer{
-    width: calc(var(--Photo-size) + 10px * 2);
-    }
-  }
-
-@media screen and (max-width: 768px){
-  .swipercontainer{
-    width: calc(var(--Photo-size) + 10px * 1);
-    }
-  }
-
-.swipercontainer::-webkit-scrollbar {
-    display:none;
-}
-
-.swiperwrapper{
-  display: flex;
-  position: relative;
-  flex-wrap: wrap;
-  margin: 0px 0px 60px 0px;
-}
-
+//
+const Text = styled.div `
 .swiperslide{
   display: block;
   position: relative;
@@ -186,6 +148,55 @@ const Div = styled.div `
     font-size: 20px;
     }
   }
+`
+
+//
+const Slide = styled.div `
+.slideimage{
+  width: auto;
+  height: 100%;
+}
+`
+//
+const Div = styled.div `
+.swipercontainer{
+  width: calc(var(--Photo-size) + 10px * 3);
+  height: -moz-available;
+  height: -webkit-fill-available;
+  height: fill-available;
+  display: block;
+  position: fixed;
+  top: 60px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  overflow: hidden scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  margin: 0;
+}
+
+@media screen and (max-width: 1200px){
+  .swipercontainer{
+    width: calc(var(--Photo-size) + 10px * 2);
+    }
+  }
+
+@media screen and (max-width: 768px){
+  .swipercontainer{
+    width: calc(var(--Photo-size) + 10px * 1);
+    }
+  }
+
+.swipercontainer::-webkit-scrollbar {
+    display:none;
+}
+
+.swiperwrapper{
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+  margin: 0px 0px 60px 0px;
+}
 
 .none{
   display: none;
@@ -212,11 +223,6 @@ const Div = styled.div `
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.slideimage{
-  width: auto;
-  height: 100%;
 }
 `
 
@@ -254,72 +260,61 @@ var length = Photolen;
 var start = 1;
 var list = Array.apply(null, new Array(length)).map(function(v, i) {return start + i;});
 
-class PhotoSliderDesktop extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      toggle: false,
-      startItem: "",
-    }
-  };
+function PhotoSliderDesktop () {
+    const [startItem, setstartItem] = useState("");
+    const [open, setOpen] = useState(false);
+    const toggle = () => setOpen(!open)
 
-  render() {
-    var roop = () => {
-      const params = {
-        initialSlide: (this.state.startItem),
-        slidesPerView: 1,
-        spaceBetween: 0,
-        centeredSlides: true,
-        observer: true,
-        observeParents: true,
-        rebuildOnUpdate: true,
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        }
+    const params = {
+      initialSlide: (startItem),
+      slidesPerView: 1,
+      spaceBetween: 0,
+      centeredSlides: true,
+      observer: true,
+      observeParents: true,
+      rebuildOnUpdate: true,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
       }
-      const items = list.map((i) =>
-      <div className="swiperslide" key={i.toString()}>
-        <div className="slideimages">
-          <img src={require("./Images/desktop/image" + [Photolen - i + 1] + ".jpg")} alt="image1" className="image"
-            onClick = {() => { this.setState({toggle: !this.state.toggle, startItem: (i - 1)})}}/>
-        </div>
-        <div className="text">
-          <h1 className="font">{PhotoTitleList[i - 1]}</h1>
-        </div>
-      </div>);
+    }
 
-      const slide = list.map((a) =>
-      <div>
-        <img src={require("./Images/desktop/image" + [Photolen - a + 1] + ".jpg")} alt="images" className="slideimage" id="sWH"></img>
-      </div>);
+    const items = list.map((i) =>
+    <Text className="swiperslide" key={i.toString()}>
+      <div className="slideimages">
+        <img src={require("./Images/desktop/image" + [Photolen - i + 1] + ".jpg")} alt="image1" className="image"
+          onClick = {() => setOpen(setstartItem(i - 1))}/>
+      </div>
+      <div className="text">
+        <h1 className="font">{PhotoTitleList[i - 1]}</h1>
+      </div>
+    </Text>);
 
-          return (
-          <div>
-            <div className="swipercontainer">
-              <div className="swiperwrapper">
-                {items}
-              </div>
+    const slide = list.map((a) =>
+    <Slide>
+      <img src={require("./Images/desktop/image" + [Photolen - a + 1] + ".jpg")} alt="images" className="slideimage" id="sWH"></img>
+    </Slide>);
+
+        return (
+        <Div>
+          <div className="swipercontainer">
+            <div className="swiperwrapper">
+              {items}
             </div>
-            <div className={this.state.toggle? " show": " none"}>
-              <CloseButton onClick = {() => { this.setState({toggle: !this.state.toggle})}}>
-                <div/>
-                <div/>
-              </CloseButton>
-              <Swiper {...params}>
-                {slide}
-              </Swiper>
-              </div>
           </div>
-        );
-    };
+          <div className={open? " show": " none"}>
 
-    return (
-      <Div>
-        {roop()}
-    </Div>);
+            <CloseButton onClick = {() => setOpen(toggle)}>
+              <div/>
+              <div/>
+            </CloseButton>
 
-  }
-};
+            <Swiper {...params}>
+              {slide}
+            </Swiper>
+            </div>
+        </Div>
+      )
+  };
 
 export default PhotoSliderDesktop;
