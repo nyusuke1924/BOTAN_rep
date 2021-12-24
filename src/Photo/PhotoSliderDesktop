@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Swiper from 'react-id-swiper';
-import PhotoSliderDesktop from '../Media/MediaSliderDesktop';
 
 var PhotoTitleList = [
   "20.09.23",
@@ -157,8 +156,9 @@ const Slide = styled.div `
   height: 100%;
 }
 `
+
 //
-const Div = styled.div `
+const PhotoStyled = styled.div `
 .swipercontainer{
   width: calc(var(--Photo-size) + 10px * 3);
   height: -moz-available;
@@ -226,15 +226,32 @@ const Div = styled.div `
 }
 `
 
+//
 const CloseButton = styled.div `
-width: 30px;
-height: 30px;
-position: fixed;
-top: calc(var(--Product-size1)/2 - 15px);
-right: calc(var(--Product-size1)/2 - 15px);
-z-index: 100;
-display: flex;
-flex-flow: column nowrap;
+.button{
+  width: 30px;
+  height: 30px;
+  position: fixed;
+  top: calc(20px);
+  right: calc(20px);
+  z-index: 100;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+  @media screen and (max-width: 1200px){
+  .button{
+    top: calc(15px);
+    right: calc(15px);
+    }
+  }
+
+  @media screen and (max-width: 768px){
+  .button{
+    top: calc(10px);
+    right: calc(10px);
+    }
+  }
 
 div {
   width: 30px;
@@ -257,7 +274,7 @@ div {
 `
 
 var length = Photolen;
-var start = 1;
+var start = 0;
 var list = Array.apply(null, new Array(length)).map(function(v, i) {return start + i;});
 
 function PhotoSliderDesktop () {
@@ -279,10 +296,10 @@ function PhotoSliderDesktop () {
       }
     }
 
-    const items = list.map((i) =>
+    const PhotoItems = list.map((i) =>
     <Text className="swiperslide" key={i.toString()}>
       <div className="slideimages">
-        <img src={require("./Images/desktop/image" + [Photolen - i + 1] + ".jpg")} alt="image1" className="image"
+        <img src={require("./Images/image" + [Photolen - i] + ".jpg")} alt="image1" className="image"
           onClick = {() => setOpen(setstartItem(i - 1))}/>
       </div>
       <div className="text">
@@ -290,30 +307,30 @@ function PhotoSliderDesktop () {
       </div>
     </Text>);
 
-    const slide = list.map((a) =>
+    const PhotoSlide = list.map((a) =>
     <Slide>
-      <img src={require("./Images/desktop/image" + [Photolen - a + 1] + ".jpg")} alt="images" className="slideimage" id="sWH"></img>
+      <img src={require("./Images/image" + [Photolen - a] + ".jpg")} alt="images" className="slideimage" id="sWH"></img>
     </Slide>);
 
         return (
-        <Div>
+        <PhotoStyled>
           <div className="swipercontainer">
             <div className="swiperwrapper">
-              {items}
+              {PhotoItems}
             </div>
           </div>
           <div className={open? " show": " none"}>
 
-            <CloseButton onClick = {() => setOpen(toggle)}>
+            <CloseButton onClick = {() => setOpen(toggle)} className="button">
               <div/>
               <div/>
             </CloseButton>
 
             <Swiper {...params}>
-              {slide}
+              {PhotoSlide}
             </Swiper>
             </div>
-        </Div>
+        </PhotoStyled>
       )
   };
 
