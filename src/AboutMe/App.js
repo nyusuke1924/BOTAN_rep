@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Media from 'react-media';
+import MediaQuery from "react-responsive";
 import ConceptSliderDesktop from './ConceptSliderDesktop';
 import ConceptSliderMobile from './ConceptSliderMobile';
 
@@ -18,11 +18,12 @@ const Div = styled.div`
 const AboutMeApp = () => {
   return (
     <Div className="App">
-            <Media query = {{maxWidth: 768}}>
-              {matches =>
-                matches ? (<ConceptSliderMobile/>
-                ) :(<ConceptSliderDesktop/>)}
-            </Media>
+      <MediaQuery query="(max-width: 768px)">
+        <ConceptSliderMobile/>
+      </MediaQuery>
+      <MediaQuery query="(min-width: 769px)">
+        <ConceptSliderDesktop/>
+      </MediaQuery>
     </Div>
   );
 };

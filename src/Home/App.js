@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Media from 'react-media';
+import MediaQuery from "react-responsive";
 import HomeSliderDesktop from './HomeSliderDesktop';
 import HomeSliderMobile from './HomeSliderMobile';
 
@@ -18,11 +18,12 @@ const Div = styled.div`
 const HomeApp = () => {
   return (
     <Div className="App">
-            <Media query = {{maxWidth: 768}}>
-              {matches =>
-                matches ? (<HomeSliderMobile/>
-                ) :(<HomeSliderDesktop/>)}
-            </Media>
+      <MediaQuery query="(max-width: 768px)">
+        <HomeSliderMobile/>
+      </MediaQuery>
+      <MediaQuery query="(min-width: 769px)">
+        <HomeSliderDesktop/>
+      </MediaQuery>
     </Div>
   );
 };

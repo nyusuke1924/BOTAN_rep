@@ -1,33 +1,57 @@
 import React from 'react';
 import styled from 'styled-components';
 
-var ProductTitleList = [
-  "Shelf",
-  "Hi Stool",
-  "Standing Desk",
-  "Earring Case",
-  "Low Table",
-  "Desk Organizer",
-  "Tray",
-  "Hanger Rack",
-  "Bed",
-  "Lamp Stand",
-  "Bench",
-  "Lamp Shade",
-  "PC Stand",
-  "Desk",
-  "Stool"]
-
-var Productlen = Object.keys(ProductTitleList).length;
+var PhotoTitleList = [
+  "20.09.23",
+  "20.09.21",
+  "20.08.13",
+  "20.03.22",
+  "19.11.24",
+  "19.10.30",
+  "19.10.30",
+  "19.10.29",
+  "19.10.29",
+  "19.09.30",
+  "19.09.13",
+  "19.08.11",
+  "19.06.13",
+  "19.05.05",
+  "19.03.24",
+  "19.02.02",
+  "18.09.17",
+  "18.08.15",
+  "18.08.11",
+  "18.08.05",
+  "18.05.21",
+  "18.05.04",
+  "18.04.07",
+  "18.04.03",
+  "18.03.04",
+  "18.03.03",
+  "18.02.17",
+  "18.02.08",
+  "18.02.03",
+  "17.11.16",
+  "17.10.13",
+  "17.09.15",
+  "17.09.12",
+  "17.08.15",
+  "17.08.03",
+  "17.06.08",
+  "17.05.27",
+  "17.01.26",
+  "17.01.14"
+]
+var Photolen = Object.keys(PhotoTitleList).length;
 
 var Size = "80vw";
 
-document.documentElement.style.setProperty('--Product-Size', Size);
+document.documentElement.style.setProperty('--Photo-Size', Size);
 
 //
-const ProductStyled = styled.div `
+const PhotoStyled = styled.div `
 .swipercontainer{
-  width: calc(var(--Product-Size) + 10px * 3);
+  width: calc(var(--Photo-Size) + 10px * 3);
   height: -moz-available;
   height: -webkit-fill-available;
   height: fill-available;
@@ -44,13 +68,13 @@ const ProductStyled = styled.div `
 
 @media screen and (max-width: 1200px){
   .swipercontainer{
-    width: calc(var(--Product-Size) + 10px * 2);
+    width: calc(var(--Photo-Size) + 10px * 2);
     }
   }
 
 @media screen and (max-width: 768px){
   .swipercontainer{
-    width: calc(var(--Product-Size) + 10px * 1);
+    width: calc(var(--Photo-Size) + 10px * 1);
     }
   }
 
@@ -66,7 +90,7 @@ const ProductStyled = styled.div `
 }
 
 .swiperslide{
-  width: calc(var(--Product-Size)/3);
+  width: calc(var(--Photo-Size)/3);
   display: block;
   position: relative;
   margin: 5px;
@@ -74,13 +98,13 @@ const ProductStyled = styled.div `
 
 @media screen and (max-width: 1200px){
   .swiperslide{
-    width: calc(var(--Product-Size)/2);
+    width: calc(var(--Photo-Size)/2);
   }
 }
 
 @media screen and (max-width: 768px){
   .swiperslide{
-    width: calc(var(--Product-Size));
+    width: calc(var(--Photo-Size));
   }
 }
 
@@ -131,36 +155,37 @@ const ProductStyled = styled.div `
   }
 `
 
-var length = Productlen;
+var length = Photolen;
 var start = 0;
 var list = Array.apply(null, new Array(length)).map(function(v, i) {return start + i;});
 
-function ProductSlider () {
+function PhotoSlider () {
 
-    const ProductItems = list.map((i) =>
+    const PhotoItems = list.map((i) =>
       <div className="swiperslide" key={i.toString()}>
         <div className="slideimages">
-          <img src={require("./Images/image" + [Productlen - i] + ".jpg")} alt="image1" className="image"/>
+          <img src={require("./Images/image" + [Photolen - i] + ".jpg")} alt="image1" className="image"/>
         </div>
         <div className="text">
-          <h1 className="font">{ProductTitleList[i]}</h1>
+          <h1 className="font">{PhotoTitleList[i]}</h1>
         </div>
       </div>);
 
         return (
             <div className="swiperwrapper">
-              {ProductItems}
+              {PhotoItems}
             </div>
       )
   };
 
-  const ProductSliderDesktop = () => {
+  const PhotoSliderDesktop = () => {
     return (
-      <ProductStyled>
+      <PhotoStyled>
         <div className="swipercontainer">
-          { ProductSlider() }
+          { PhotoSlider() }
         </div>
-    </ProductStyled>);
+    </PhotoStyled>);
   };
   
-  export default ProductSliderDesktop;
+  export default PhotoSliderDesktop;
+  

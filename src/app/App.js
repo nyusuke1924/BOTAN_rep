@@ -1,5 +1,5 @@
 import React from 'react';
-import Media from 'react-media';
+import MediaQuery from "react-responsive";
 
 import BurgerDesktop from './BurgerDesktop';
 import BurgerMobile from './BurgerMobile';
@@ -8,13 +8,14 @@ function BurgerApp() {
   
   return (
     <div>
-    <Media query = {{maxWidth: 768}}>
-      {matches =>
-        matches ? (<BurgerMobile/>
-        ) :(<BurgerDesktop/>)}
-    </Media>
-  </div>
-  );
+      <MediaQuery query="(max-width: 768px)">
+        <BurgerMobile/>
+      </MediaQuery>
+      <MediaQuery query="(min-width: 769px)">
+        <BurgerDesktop/>
+      </MediaQuery>
+    </div>
+    );
 }
 
 export default BurgerApp;

@@ -20,22 +20,7 @@ var Mediaurl =
 var MediaTitleList = ["note","VUILD","VUILD","note","note","note","VUILD","ArchitecturePhoto","VUILD","ArchitecturePhoto","VUILD","VUILD","VUILD"]
 var Medialen = Object.keys(MediaTitleList).length;
 
-var Medialen1 = Math.ceil(Medialen/1);
-var Medialen2 = Math.ceil(Medialen/2);
-var Medialen3 = Math.ceil(Medialen/3);
-
-document.documentElement.style.setProperty('--Media-num1', Medialen1);
-document.documentElement.style.setProperty('--Media-num2', Medialen2);
-document.documentElement.style.setProperty('--Media-num3', Medialen3);
-
-
 const Div = styled.div `
-:root {
-  --Media-num1: 1;
-  --Media-num2: 1;
-  --Media-num3: 1;
-}
-
 .swipercontainer{
   width: calc(80vw + 10px * 3);
   height: -moz-available;
@@ -150,12 +135,13 @@ var length = Medialen;
 var start = 0;
 var list = Array.apply(null,new Array(length)).map(function(v,i){ return start+i;});
 
-var roop = () => {
+function MediaSlider () {
+
   const items = list.map((i) =>
       <div className="swiperslide" key={i.toString()}>
         <div className="slideimage">
           <p className="tag"><a href={Mediaurl[i]}>
-          <img src={require("./Images/desktop/image" + [Medialen-i] + ".jpg")} alt="image1" className='image'></img>
+            <img src={require("./Images/image" + [Medialen-i] + ".jpg")} alt="image1" className='image'></img>
           </a></p>
         </div>
         <div className="text">
@@ -163,18 +149,20 @@ var roop = () => {
         </div>
       </div>);
 
-  return <div className="swiperwrapper">
-    { items }
-    </div>;
+  return (
+    <div className="swiperwrapper">
+      { items }
+    </div>
+  );
 };
 
-const PhotoSliderDesktop = () => {
+const MediaSliderDesktop = () => {
   return (
     <Div>
     <div className="swipercontainer">
-            { roop() }
+            { MediaSlider() }
       </div>
   </Div>);
 };
 
-export default PhotoSliderDesktop;
+export default MediaSliderDesktop;
