@@ -16,7 +16,7 @@ const Div = styled.div`
 const MediaApp = () => {
   return (
     <Div className="App">
-            <MediaSliderDesktop/>
+      <MediaSliderDesktop/>
     </Div>
   );
 };

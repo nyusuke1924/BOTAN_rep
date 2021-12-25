@@ -124,20 +124,26 @@ var length = Homelen;
 var start = 0;
 var list = Array.apply(null,new Array(length)).map(function(v,i){ return start+i;});
 
-var roop =() => {
+function HomeSlider () {
 	const imageWH = " imageWH"
-	const items = list.map((i) =>
-    <div className ="main_box main_img" key={i.toString()}>
-    <img src={require("./Images/mobile/image" + [i+1] + ".jpg")} alt="images" className={imageWH} id="sWH"></img>
-    <h1 className="text">{HomeTitleList[i]}</h1></div>);
+	const Homeitems = list.map((i) =>
+		<div className ="main_box main_img" key={i.toString()}>
+			<img src={require("./Images/mobile/image" + [i+1] + ".jpg")} alt="images" className={imageWH} id="sWH"></img>
+		  <h1 className="text">{HomeTitleList[i]}</h1>
+	  </div>);
 
-  return <div>{ items }</div>;
+  return (
+    <div>
+      { Homeitems }
+    </div>);
 };
 
-const HomeSliderDesktop = () => {
+const HomeSliderMobile = () => {
   return(
-    <Div>{ roop() }</Div>
+    <Div>
+      { HomeSlider() }
+    </Div>
   );
 };
 
-export default HomeSliderDesktop;
+export default HomeSliderMobile;
