@@ -12,8 +12,8 @@ window_load();
 window.onresize = window_load;
 
 function window_load() {
-	const sW = window.innerWidth;
-	const sH = window.innerHeight;
+	const sW = "100vw";
+	const sH = "100vh";
 
   document.documentElement.style.setProperty('--Home-sW', sW);
   document.documentElement.style.setProperty('--Home-sH', sH);

@@ -20,14 +20,10 @@ var ProductTitleList = [
 
 var Productlen = Object.keys(ProductTitleList).length;
 
-var Size = "80vw";
-
-document.documentElement.style.setProperty('--Product-Size', Size);
-
 //
 const ProductStyled = styled.div `
 .swipercontainer{
-  width: calc(var(--Product-Size) + 10px * 3);
+  width: calc(var(--Window-Size) + 10px * 3);
   height: -moz-available;
   height: -webkit-fill-available;
   height: fill-available;
@@ -44,13 +40,13 @@ const ProductStyled = styled.div `
 
 @media screen and (max-width: 1200px){
   .swipercontainer{
-    width: calc(var(--Product-Size) + 10px * 2);
+    width: calc(var(--Window-Size) + 10px * 2);
     }
   }
 
 @media screen and (max-width: 768px){
   .swipercontainer{
-    width: calc(var(--Product-Size) + 10px * 1);
+    width: calc(var(--Window-Size) + 10px * 1);
     }
   }
 
@@ -66,7 +62,8 @@ const ProductStyled = styled.div `
 }
 
 .swiperslide{
-  width: calc(var(--Product-Size)/3);
+  width: calc(var(--Window-Size)/3);
+  height: calc(var(--Window-Size) * 2/9);
   display: block;
   position: relative;
   margin: 5px;
@@ -74,18 +71,20 @@ const ProductStyled = styled.div `
 
 @media screen and (max-width: 1200px){
   .swiperslide{
-    width: calc(var(--Product-Size)/2);
+    width: calc(var(--Window-Size)/2);
+    height: calc(var(--Window-Size) * 2/6);
   }
 }
 
 @media screen and (max-width: 768px){
   .swiperslide{
-    width: calc(var(--Product-Size));
+    width: calc(var(--Window-Size));
+    height: calc(var(--Window-Size) * 2/3);
   }
 }
 
 .slideimages{
-  height: auto;
+  height: 100%;
   margin: auto;
   display: block;
   position: relative;
@@ -99,8 +98,13 @@ const ProductStyled = styled.div `
 }
 
 .image{
-  height: auto;
-  width: 100%;
+  height: 100%;
+  width: auto;
+  margin: auto;
+  display: block;
+  position: relative;
+  justify-content: center;
+  align-items: center;
 }
 
 .text{

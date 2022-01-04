@@ -44,14 +44,10 @@ var PhotoTitleList = [
 ]
 var Photolen = Object.keys(PhotoTitleList).length;
 
-var Size = "80vw";
-
-document.documentElement.style.setProperty('--Photo-Size', Size);
-
 //
 const PhotoStyled = styled.div `
 .swipercontainer{
-  width: calc(var(--Photo-Size) + 10px * 3);
+  width: calc(var(--Window-Size) + 10px * 3);
   height: -moz-available;
   height: -webkit-fill-available;
   height: fill-available;
@@ -68,13 +64,13 @@ const PhotoStyled = styled.div `
 
 @media screen and (max-width: 1200px){
   .swipercontainer{
-    width: calc(var(--Photo-Size) + 10px * 2);
+    width: calc(var(--Window-Size) + 10px * 2);
     }
   }
 
 @media screen and (max-width: 768px){
   .swipercontainer{
-    width: calc(var(--Photo-Size) + 10px * 1);
+    width: calc(var(--Window-Size) + 10px * 1);
     }
   }
 
@@ -90,7 +86,8 @@ const PhotoStyled = styled.div `
 }
 
 .swiperslide{
-  width: calc(var(--Photo-Size)/3);
+  width: calc(var(--Window-Size)/3);
+  height: calc(var(--Window-Size) * 2/9);
   display: block;
   position: relative;
   margin: 5px;
@@ -98,18 +95,20 @@ const PhotoStyled = styled.div `
 
 @media screen and (max-width: 1200px){
   .swiperslide{
-    width: calc(var(--Photo-Size)/2);
+    width: calc(var(--Window-Size)/2);
+    height: calc(var(--Window-Size) * 2/6);
   }
 }
 
 @media screen and (max-width: 768px){
   .swiperslide{
-    width: calc(var(--Photo-Size));
+    width: calc(var(--Window-Size));
+    height: calc(var(--Window-Size) * 2/3);
   }
 }
 
 .slideimages{
-  height: auto;
+  height: 100%;
   margin: auto;
   display: block;
   position: relative;
@@ -123,8 +122,13 @@ const PhotoStyled = styled.div `
 }
 
 .image{
-  height: auto;
-  width: 100%;
+  height: 100%;
+  width: auto;
+  margin: auto;
+  display: block;
+  position: relative;
+  justify-content: center;
+  align-items: center;
 }
 
 .text{
