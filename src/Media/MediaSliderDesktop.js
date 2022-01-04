@@ -22,7 +22,7 @@ var Medialen = Object.keys(MediaTitleList).length;
 
 const Div = styled.div `
 .swipercontainer{
-  width: calc(80vw + 10px * 3);
+  width: calc(var(--Window-Size) + 10px * 3);
   height: -moz-available;
   height: -webkit-fill-available;
   height: fill-available;
@@ -39,13 +39,13 @@ const Div = styled.div `
 
 @media screen and (max-width: 1200px){
   .swipercontainer{
-    width: calc(80vw + 10px * 2);
+    width: calc(var(--Window-Size) + 10px * 2);
     }
   }
 
 @media screen and (max-width: 768px){
   .swipercontainer{
-    width: calc(80vw + 10px * 1);
+    width: calc(var(--Window-Size) + 10px * 1);
     }
   }
 
@@ -61,7 +61,8 @@ const Div = styled.div `
 }
 
 .swiperslide{
-  width: calc(80vw/3);
+  width: calc(var(--Window-Size)/3);
+  height: calc(var(--Window-Size)* 2/9);
   display: block;
   position: relative;
   margin: 5px;
@@ -69,15 +70,17 @@ const Div = styled.div `
 
 @media screen and (max-width: 1200px){
   .swiperslide{
-    width: calc(80vw/2);
-    }
+    width: calc(var(--Window-Size)/2);
+    height: calc(var(--Window-Size) * 2/6);
   }
+}
 
-  @media screen and (max-width: 768px){
-    .swiperslide{
-      width: calc(80vw);
-      }
-    }
+@media screen and (max-width: 768px){
+  .swiperslide{
+    width: calc(var(--Window-Size));
+    height: calc(var(--Window-Size) * 2/3);
+  }
+}
 
 .slideimage{
   margin: auto;
@@ -119,7 +122,7 @@ const Div = styled.div `
 }
 
 .font{
-  font-weight: 600;
+  font-weight: 200;
   color: #565565;
   font-size: 30px;
 }

@@ -3,23 +3,22 @@ import styled from 'styled-components';
 
 const Div = styled.div `
 .main_box{
-  width: calc(100% - 20px);
-  height: calc(100% - 20px);
+  width: calc(100vw - 20px);
+  height: calc(100vh - 20px - var(--Header-Size));
   display: flex;
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: calc(var(--Header-Size) + 10px);
+  left: 10px;
 }
 
 .image{
-  width: calc(100vw * 0.6);
-  max-width: 900px;
-  min-width: 540px;
-  height: auto;
+  width: auto;
+  height: 100%;
+  max-height: 600px;
+  min-height: 360px;
   margin: auto;
   display: flex;
-  position: fixed;
+  position: absolute;
   top: 50%;
   right: 50%;
   transform: translate(50%, -50%);
@@ -30,18 +29,16 @@ const Div = styled.div `
 }
 
 .text_box{
-  width: calc(100vw * 0.6);
-  max-width: 900px;
-  min-width: 540px;
-  height: calc(100vw * 0.6 * 2/3);
+  width: calc((100vh - 20px - var(--Header-Size)) * 3/2);
+  height: 100%;
   max-height: 600px;
   min-height: 360px;
   margin: auto;
-  display: brock;
-  position: fixed;
-  top: calc(50% + 10px);
-  right: calc(50% + 100px);
-  transform: translate(50%, -50%);
+  display: flex;
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(calc(50% - 30px), calc(-50% + 10px));
 }
 
 .color_box{

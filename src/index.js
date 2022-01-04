@@ -5,6 +5,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './index.css';
 import BurgerApp from './app/App.js';
 import reportWebVitals from './reportWebVitals';
+import './size.js';
 
 ReactDOM.render(
   <React.StrictMode>
